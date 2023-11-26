@@ -5,7 +5,7 @@ Game idea 2024.
 ## How to Setup
 
 ### 0. Required Installations
-- [Unity 2023.1.5f](https://unity.com/releases/editor/whats-new/2023.1.5)'
+- [Unity 2023.1.5f](https://unity.com/releases/editor/whats-new/2023.1.5)
 - [Git](https://git-scm.com/downloads)
 - [GitLFS](https://git-lfs.com/)
 - [GitHub Desktop](https://desktop.github.com/)
