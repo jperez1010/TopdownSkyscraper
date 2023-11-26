@@ -23,3 +23,5 @@ Game idea 2024.
 - In Github Desktop, add Topdown Skyscraper to the same location without the 2, i.e. C:\Users\YOURNAME\Documents\TopdownSkyscraper
 - Copy everything from ...\TopdownSkyscraper2 into ...\TopdownSkyscraper, if anything needs to be overwritten keep what was originally in the GitHub
 - Delete the ...\TopdownSkyscraper2 folder
+
+Now the Unity game should all be present within ...\TopdownSkyscraper
