@@ -12,3 +12,9 @@ Assets/ParrelSync/
 *.csproj
 *.sln
 *.vsconfig
+
+Assets/FMODStudioCache.asset.meta
+Fmod.log
+Fmod_editor.log
+Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset.meta
+Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset
