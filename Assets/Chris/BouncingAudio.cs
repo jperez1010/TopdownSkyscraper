@@ -6,7 +6,8 @@ public class BouncingAudio : MonoBehaviour
     public float maxDistance = 10f; 
     public float minDistance = 1f; 
     private string cutOutTag = "CutOutTag"; 
-    public float cutOutDistance = 5f; 
+    public float cutOutDistance = 5f;
+    public float c = 1f;
 
     public GameObject player; 
 
@@ -43,7 +44,7 @@ public class BouncingAudio : MonoBehaviour
                 if (hit.collider.CompareTag("Obstacle"))
                 {
                    
-                    obstructionAmount += hit.distance / distance;
+                    obstructionAmount =  1-Mathf.Exp(-c*(distance / hit.distance - 1));
                 }
 
                 
