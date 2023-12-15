@@ -14,95 +14,96 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SavePath: /inventory.Save
   databaseObject: {fileID: 11400000, guid: 531b8d6b83e9b0c4683590a5a5370efc, type: 2}
+  type: 0
   Container:
-    items:
-    - ID: -1
+    slots:
+    - AllowedItems: 
       item:
         Name: 
-        Id: 0
+        Id: -1
         buffs: []
       amount: 0
-    - ID: -1
+    - AllowedItems: 
       item:
         Name: 
-        Id: 0
+        Id: -1
         buffs: []
       amount: 0
-    - ID: -1
+    - AllowedItems: 
       item:
         Name: 
-        Id: 0
+        Id: -1
         buffs: []
       amount: 0
-    - ID: -1
+    - AllowedItems: 
       item:
         Name: 
-        Id: 0
+        Id: -1
         buffs: []
       amount: 0
-    - ID: -1
+    - AllowedItems: 
       item:
         Name: 
-        Id: 0
+        Id: -1
         buffs: []
       amount: 0
-    - ID: -1
+    - AllowedItems: 
       item:
         Name: 
-        Id: 0
+        Id: -1
         buffs: []
       amount: 0
-    - ID: -1
+    - AllowedItems: 
       item:
         Name: 
-        Id: 0
+        Id: -1
         buffs: []
       amount: 0
-    - ID: -1
+    - AllowedItems: 
       item:
         Name: 
-        Id: 0
+        Id: -1
         buffs: []
       amount: 0
-    - ID: -1
+    - AllowedItems: 
       item:
         Name: 
-        Id: 0
+        Id: -1
         buffs: []
       amount: 0
-    - ID: -1
+    - AllowedItems: 
       item:
         Name: 
-        Id: 0
+        Id: -1
         buffs: []
       amount: 0
-    - ID: -1
+    - AllowedItems: 
       item:
         Name: 
-        Id: 0
+        Id: -1
         buffs: []
       amount: 0
-    - ID: -1
+    - AllowedItems: 
       item:
         Name: 
-        Id: 0
+        Id: -1
         buffs: []
       amount: 0
-    - ID: -1
+    - AllowedItems: 
       item:
         Name: 
-        Id: 0
+        Id: -1
         buffs: []
       amount: 0
-    - ID: -1
+    - AllowedItems: 
       item:
         Name: 
-        Id: 0
+        Id: -1
         buffs: []
       amount: 0
-    - ID: -1
+    - AllowedItems: 
       item:
         Name: 
-        Id: 0
+        Id: -1
         buffs: []
       amount: 0
