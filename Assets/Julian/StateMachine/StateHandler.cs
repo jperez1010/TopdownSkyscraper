@@ -52,12 +52,10 @@ public abstract class StateHandler<EState> : MonoBehaviour where EState : Enum
     // Helper Functions
     private void TransitionState(EState nextStateKey)
     {
-        Debug.Log("Changing from state " + currentState.stateKey + " to " + nextStateKey);
         isTransitioning = true;
         currentState.ExitState(gameObject);
         currentState = states[nextStateKey];
         currentState.EnterState(gameObject);
         isTransitioning = false;
-        Debug.Log("Currently " + currentState);
     }
 }
