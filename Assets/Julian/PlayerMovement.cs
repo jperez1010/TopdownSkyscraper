@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Animator animator;
-    public Rigidbody rigidbody;
+    private Animator animator;
+    private Rigidbody rb;
     public float speed = 1f;
     public float angularSpeed = 1f;
     public float runSpeed = 1f;
@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -46,25 +47,28 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.W))
         {
-            rigidbody.velocity = new Vector3(actualSpeed * Mathf.Sin(Mathf.PI / 180 * transform.rotation.eulerAngles.y), rigidbody.velocity.y, actualSpeed * Mathf.Cos(Mathf.PI / 180 * transform.rotation.eulerAngles.y));
-            Debug.Log((180 / Mathf.PI * transform.rotation.eulerAngles.y, Mathf.Sin(180 / Mathf.PI * transform.rotation.eulerAngles.y), rigidbody.velocity));
+            rb.velocity = new Vector3(actualSpeed * Mathf.Sin(Mathf.PI / 180 * transform.rotation.eulerAngles.y), rb.velocity.y, actualSpeed * Mathf.Cos(Mathf.PI / 180 * transform.rotation.eulerAngles.y));
         }
         if (Input.GetKey(KeyCode.D))
         {
-            rigidbody.angularVelocity = new Vector3(0, angularSpeed, 0);
+            rb.angularVelocity = new Vector3(0, angularSpeed, 0);
         }
         if (Input.GetKey(KeyCode.A))
         {
-            rigidbody.angularVelocity = new Vector3(0, -angularSpeed, 0);
+            rb.angularVelocity = new Vector3(0, -angularSpeed, 0);
         }
         if (Input.GetKey(KeyCode.R))
         {
-            rigidbody.velocity = Vector3.zero;
+            rb.velocity = Vector3.zero;
             transform.position = new Vector3(0, -0.83f, -6.89f);
         }
-        Vector3 currentVelocity = new Vector3(rigidbody.velocity.x, 0, rigidbody.velocity.z);
+        Vector3 currentVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         animator.SetBool("isWalking", (currentVelocity.magnitude >= speed / 20f));
-        animator.SetBool("isTurningRight", (Mathf.Abs(rigidbody.angularVelocity.y) >= angularSpeed / 5f));
-        animator.SetBool("isShiftDown", Input.GetKey(KeyCode.LeftShift));
+        //animator.SetBool("isTurningRight", (Mathf.Abs(rigidbody.angularVelocity.y) >= angularSpeed / 5f));
+        //animator.SetBool("isShiftDown", Input.GetKey(KeyCode.LeftShift));
+
+
+        animator.SetBool("swing", Input.GetKey(KeyCode.Mouse0));
+
     }
 }
