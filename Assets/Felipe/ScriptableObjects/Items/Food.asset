@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb3ee0aca626e1c449d19a8ce17d557f, type: 3}
   m_Name: Food
   m_EditorClassIdentifier: 
-  Id: 0
   uiDisplay: {fileID: 21300000, guid: 52b20df198c02f04ea87a7152e77cb23, type: 3}
+  stackable: 1
   type: 0
   description: YUM YUM YUM
-  buffs: []
+  data:
+    Name: 
+    Id: 0
+    buffs: []
