@@ -26,7 +26,7 @@ public class PlayerWalkState : State<PlayerStateEnum>
         animator = gameObject.GetComponent<Animator>();
         rb = gameObject.GetComponent<Rigidbody>();
 
-        animator.CrossFade(animation, 0.25f);
+        animator.CrossFade(animation, 0.01f);
     }
     public override void UpdateState(GameObject gameObject)
     {
