@@ -5,11 +5,7 @@ using UnityEngine;
 
 public class Billboard : MonoBehaviour
 {
-    new public Camera camera;
-    
-    void Start(){
-        camera = Camera.main;
-    }
+    public Camera camera;
 
     private void LateUpdate()
     {

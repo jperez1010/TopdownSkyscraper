@@ -12,12 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15f6a302cd3ca264ca95a51d4816e11c, type: 3}
   m_Name: Weapon
   m_EditorClassIdentifier: 
-  Id: 2
   uiDisplay: {fileID: 21300000, guid: fbfd0f0228f94e34484517532f9949a8, type: 3}
+  stackable: 0
+  characterDisplay: {fileID: 7350575986529160222, guid: 0ffbf34f0b50a654db728b8b102ffd81,
+    type: 3}
   type: 1
   description: Hit something
-  buffs:
-  - attribute: 0
-    value: 0
-    min: 5
-    max: 20
+  data:
+    Name: 
+    Id: 2
+    buffs:
+    - attribute: 1
+      value: 0
+      min: 0
+      max: 10
+  boneNames: []

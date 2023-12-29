@@ -112,8 +112,8 @@ public abstract class UserInterace : MonoBehaviour
             GameObject newObject = Instantiate(groundObjectPrefab);
             GameObject player = GameObject.FindWithTag("Player");
             newObject.transform.position = player.transform.position + new Vector3(player.transform.forward.x * 2, -player.transform.position.y, player.transform.forward.z * 2);
-            newObject.GetComponent<GroundItem>().item = slotsOnInterface[obj].ItemObject;
-            newObject.GetComponentInChildren<Billboard>().camera = Camera.main;
+            newObject.GetComponent<GroundItemHandler>().groundItem.item = slotsOnInterface[obj].ItemObject;
+            newObject.GetComponent<Billboard>().camera = Camera.main;
             newObject.GetComponentInChildren<SpriteRenderer>().sprite = slotsOnInterface[obj].ItemObject.uiDisplay;
             if (slotsOnInterface[obj].amount > 1)
             {

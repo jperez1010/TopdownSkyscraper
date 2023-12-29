@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiDisplay: {fileID: 21300000, guid: 52b20df198c02f04ea87a7152e77cb23, type: 3}
   stackable: 1
+  characterDisplay: {fileID: 0}
   type: 0
   description: YUM YUM YUM
   data:
     Name: 
-    Id: 0
+    Id: 1
     buffs: []
+  boneNames: []

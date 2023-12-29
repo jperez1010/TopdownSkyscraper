@@ -17,7 +17,7 @@ MonoBehaviour:
   type: 1
   Container:
     slots:
-    - AllowedItems: 04000000
+    - AllowedItems: 01000000
       item:
         Name: 
         Id: -1
