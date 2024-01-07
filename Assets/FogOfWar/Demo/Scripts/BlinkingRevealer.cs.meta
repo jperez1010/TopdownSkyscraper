@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 08c9cc82ab83a1f48aa77c2b832a9c86
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 229484
+  packageName: Pixel-Perfect Fog Of War
+  packageVersion: 2.0.1
+  assetPath: Assets/FogOfWar/Demo/Scripts/BlinkingRevealer.cs
+  uploadId: 633053

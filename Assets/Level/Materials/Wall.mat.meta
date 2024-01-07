@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f09a4ffa63d4a2e409cb42f78613ebff
+guid: 95538e444223a1a4fa3211678866a133
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000
@@ -11,5 +11,5 @@ AssetOrigin:
   productId: 249249
   packageName: AOS Fog of War
   packageVersion: 1.2
-  assetPath: Assets/AOSFogWar/Demo/Materials/URP/Floor.mat
+  assetPath: Assets/AOSFogWar/Demo/Materials/URP/Wall.mat
   uploadId: 582775

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 175772a2740b2ba499d1249205cc7138
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 229484
+  packageName: Pixel-Perfect Fog Of War
+  packageVersion: 2.0.1
+  assetPath: Assets/FogOfWar/Scripts/Hiders/PartialHider.cs
+  uploadId: 633053

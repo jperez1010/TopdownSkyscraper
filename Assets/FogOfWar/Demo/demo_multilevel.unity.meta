@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 08138608ea1c722499d01428616565bf
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 229484
+  packageName: Pixel-Perfect Fog Of War
+  packageVersion: 2.0.1
+  assetPath: Assets/FogOfWar/Demo/demo_multilevel.unity
+  uploadId: 633053

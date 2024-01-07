@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d4b5d097f4539b6438f9a4eda3237348
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 229484
+  packageName: Pixel-Perfect Fog Of War
+  packageVersion: 2.0.1
+  assetPath: Assets/FogOfWar/Demo/05_InvertedColliders.unity
+  uploadId: 633053

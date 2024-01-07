@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: b5f64b90518bea142a22d4196d124dc2
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 229484
+  packageName: Pixel-Perfect Fog Of War
+  packageVersion: 2.0.1
+  assetPath: Assets/FogOfWar/Scripts/Revealers/FogOfWarRevealer.cs
+  uploadId: 633053

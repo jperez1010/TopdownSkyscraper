@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 82b8f6ea7dc72e042bce0b2ab296b47a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 229484
+  packageName: Pixel-Perfect Fog Of War
+  packageVersion: 2.0.1
+  assetPath: Assets/FogOfWar/Demo/Materials/Enemy.mat
+  uploadId: 633053
