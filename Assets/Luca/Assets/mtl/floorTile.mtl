@@ -1,0 +1,5 @@
+newmtl Wall7
+map_Kd Wall7.png
+Kd 1 1 1
+d 1
+
