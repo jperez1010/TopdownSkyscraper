@@ -69,7 +69,14 @@ public class Item
 {
     public string Name;
     public int Id;
+    public int KeyId;
     public ItemBuff[] buffs;
+
+    public int width = 1;
+    public int height = 1;
+    public bool Lshape;
+
+    public Sprite itemIcon;
 
     public Item()
     {

@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 {
     public InventoryObject inventory;
     public InventoryObject equipment;
+    public InventoryController gridController;
     public WorldItemList worldItemList;
     public Attribute[] attributes;
     public PlayerLocation playerLocation;
@@ -42,6 +43,8 @@ public class Player : MonoBehaviour
             {
                 Destroy(other.gameObject);
             }
+            //gridController.AddItem(_item);
+
         }
         var elevator = other.GetComponent<BaseElevator>();
         if (elevator)
@@ -118,7 +121,10 @@ public class Player : MonoBehaviour
                             Destroy(rightLeg.gameObject);
                             break;
                         case ItemType.LEFT_ARM:
-                            Destroy(leftArm.gameObject);
+                            if (leftArm != null)
+                            {
+                                Destroy(leftArm.gameObject);
+                            }
                             break;
                         case ItemType.RIGHT_ARM:
                             Destroy(rightArm.gameObject);
@@ -221,7 +227,7 @@ public class Player : MonoBehaviour
             worldItemList.Load();
             gameObject.transform.position = playerLocation.location;
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             if (InventoryUI.gameObject.activeSelf)
             {

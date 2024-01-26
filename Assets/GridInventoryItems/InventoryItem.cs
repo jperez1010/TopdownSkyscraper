@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 
 public class InventoryItem : MonoBehaviour
 {
-    public ItemData itemData;
+    public Item itemData;
 
     public int HEIGHT
     {
@@ -39,7 +39,7 @@ public class InventoryItem : MonoBehaviour
 
     public bool rotated = false;
 
-    internal void Set(ItemData itemData)
+    internal void Set(Item itemData)
     {
         this.itemData = itemData;
 
