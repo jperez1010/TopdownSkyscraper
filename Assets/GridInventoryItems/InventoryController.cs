@@ -6,6 +6,8 @@ using UnityEngine;
 public class InventoryController : MonoBehaviour
 {
     private ItemGrid selectedItemGrid;
+
+    public InventoryObject equipmentItem;
     public ItemGrid SelectedItemGrid { 
         get => selectedItemGrid;
         set
@@ -20,13 +22,15 @@ public class InventoryController : MonoBehaviour
     RectTransform rectTransform;
 
     [SerializeField]
-    List<ItemData> items;
+    List<ItemObject> items;
     [SerializeField]
-    GameObject itemPrefab;
+    public GameObject itemPrefab;
     [SerializeField]
     Transform CanvasTransform;
 
     InventoryHighlight inventoryHighlight;
+
+    public bool unequippingItem = false;
 
     private void Awake()
     {
@@ -67,6 +71,11 @@ public class InventoryController : MonoBehaviour
         {
             MouseClickOnGrid();
         }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            EquipItem();
+        }
     }
 
     private void RotateItem()
@@ -92,15 +101,21 @@ public class InventoryController : MonoBehaviour
         InsertItem(itemToInsert);
     }
 
+    public void InsertEquippedItem(InventoryItem itemToInsert)
+    {
+        InsertItem(itemToInsert);
+    }
+
     private void InsertItem(InventoryItem itemToInsert)
     {
         Vector2Int? posOnGrid = selectedItemGrid.FindSpaceForObject(itemToInsert);
-
+        Debug.Log(posOnGrid);
         if (posOnGrid == null)
         {
+            Destroy(itemToInsert.gameObject);
             return;
         }
-
+        Debug.Log(selectedItemGrid);
         selectedItemGrid.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
     }
 
@@ -110,7 +125,7 @@ public class InventoryController : MonoBehaviour
     private void HandleHighlight()
     {
         Vector2Int positionOnGrid = GetTileGridPosition();
-        if (oldPosition == positionOnGrid && !Input.GetKeyDown(KeyCode.R))
+        if (oldPosition == positionOnGrid && !Input.GetKeyDown(KeyCode.R) || unequippingItem)
         {
             return;
         }
@@ -122,7 +137,7 @@ public class InventoryController : MonoBehaviour
             {
                 inventoryHighlight.Show(true);
                 inventoryHighlight.SetSize(itemToHighlight);
-                //inventoryHighlight.SetParent(selectedItemGrid);
+                inventoryHighlight.SetParent(selectedItemGrid);
                 inventoryHighlight.SetPosition(selectedItemGrid, itemToHighlight);
             } else
             {
@@ -132,7 +147,7 @@ public class InventoryController : MonoBehaviour
         {
             inventoryHighlight.Show(selectedItemGrid.BoundaryCheck(positionOnGrid.x, positionOnGrid.y, selectedItem.WIDTH, selectedItem.HEIGHT));
             inventoryHighlight.SetSize(selectedItem);
-            //inventoryHighlight.SetParent(selectedItemGrid);
+            inventoryHighlight.SetParent(selectedItemGrid);
             inventoryHighlight.SetPosition(selectedItemGrid, selectedItem, positionOnGrid.x, positionOnGrid.y);
         }
     }
@@ -146,7 +161,21 @@ public class InventoryController : MonoBehaviour
         rectTransform.SetAsLastSibling();
 
         int selectedItemID = UnityEngine.Random.Range(0, items.Count);
-        inventoryItem.Set(items[selectedItemID]);
+        inventoryItem.Set(items[selectedItemID].data);
+    }
+
+    public void AddItem(Item itemData)
+    {
+        InventoryItem inventoryItem = Instantiate(itemPrefab).GetComponent<InventoryItem>();
+        selectedItem = inventoryItem;
+        rectTransform = inventoryItem.GetComponent<RectTransform>();
+        rectTransform.SetParent(CanvasTransform);
+        rectTransform.SetAsLastSibling();
+
+        inventoryItem.Set(itemData);
+        InventoryItem itemToInsert = selectedItem;
+        selectedItem = null;
+        InsertItem(itemToInsert);
     }
 
     private void MouseClickOnGrid()
@@ -159,6 +188,26 @@ public class InventoryController : MonoBehaviour
         else
         {
             PlaceItem(tileGridPosition);
+        }
+    }
+
+    private void EquipItem()
+    {
+        Vector2Int tileGridPosition = GetTileGridPosition();
+        if (selectedItem == null)
+        {
+            PickUpItem(tileGridPosition);
+        }
+        if (selectedItem != null)
+        {
+            InventorySlot targetSlot = equipmentItem.FindSlotOfType(equipmentItem.databaseObject.ItemObjects[selectedItem.itemData.Id].type);
+            if (targetSlot.item.Id >= 0)
+            {
+                targetSlot.parent.AddToGridInventory(this, selectedItemGrid, targetSlot);
+            }
+            equipmentItem.AddItem(selectedItem.itemData, 1);
+            Destroy(selectedItem.gameObject);
+            //inventoryHighlight.Show(false);
         }
     }
 

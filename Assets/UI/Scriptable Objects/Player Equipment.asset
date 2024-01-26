@@ -17,33 +17,58 @@ MonoBehaviour:
   type: 1
   Container:
     slots:
+    - AllowedItems: 02000000
+      item:
+        Name: 
+        Id: -1
+        KeyId: 0
+        buffs: []
+        width: 1
+        height: 1
+        Lshape: 0
+        itemIcon: {fileID: 0}
+      amount: 0
     - AllowedItems: 01000000
       item:
         Name: 
         Id: -1
+        KeyId: 0
         buffs: []
+        width: 1
+        height: 1
+        Lshape: 0
+        itemIcon: {fileID: 0}
       amount: 0
-    - AllowedItems: 03000000
+    - AllowedItems: 05000000
       item:
         Name: 
         Id: -1
+        KeyId: 0
         buffs: []
+        width: 1
+        height: 1
+        Lshape: 0
+        itemIcon: {fileID: 0}
       amount: 0
-    - AllowedItems: 07000000
+    - AllowedItems: 05000000
       item:
         Name: 
         Id: -1
+        KeyId: 0
         buffs: []
+        width: 1
+        height: 1
+        Lshape: 0
+        itemIcon: {fileID: 0}
       amount: 0
-    - AllowedItems: 03000000
+    - AllowedItems: 04000000
       item:
         Name: 
         Id: -1
+        KeyId: 0
         buffs: []
-      amount: 0
-    - AllowedItems: 06000000
-      item:
-        Name: 
-        Id: -1
-        buffs: []
+        width: 1
+        height: 1
+        Lshape: 0
+        itemIcon: {fileID: 0}
       amount: 0

@@ -21,4 +21,7 @@ MonoBehaviour:
     Name: 
     Id: 0
     buffs: []
+    width: 1
+    height: 1
+    itemIcon: {fileID: 21300000, guid: 97bf02b87c80601439ff4014db447a90, type: 3}
   boneNames: []

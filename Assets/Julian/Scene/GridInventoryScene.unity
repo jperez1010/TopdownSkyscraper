@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -307,7 +307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &791820004
 RectTransform:
   m_ObjectHideFlags: 0
@@ -516,13 +516,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db0db6ae96cf4e34b95c7ecc4062af46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equipmentItem: {fileID: 0}
   items:
-  - {fileID: 11400000, guid: 05b2709e1c0acb6469b26e0a9eef0826, type: 2}
-  - {fileID: 11400000, guid: 73502f9159624e7479bfaa64c18a4360, type: 2}
-  - {fileID: 11400000, guid: 408328c119dc1f541b3339cea214f0f8, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   itemPrefab: {fileID: 6822348245457007875, guid: cd28c0d82cd2226458ed75f5c804f407,
     type: 3}
   CanvasTransform: {fileID: 215375078}
+  unequippingItem: 0
 --- !u!114 &863657635
 MonoBehaviour:
   m_ObjectHideFlags: 0

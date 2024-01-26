@@ -22,6 +22,7 @@ public class ItemGrid : MonoBehaviour
     {
         rectTransform = GetComponent<RectTransform>();
         Init(gridSizeWidth, gridSizeHeight);
+        gameObject.SetActive(false);
     }
 
     private void Init(int width, int height)
@@ -56,7 +57,7 @@ public class ItemGrid : MonoBehaviour
             return false;
         }
 
-        if (!OverlapCheck(posX, posY, inventoryItem.WIDTH, inventoryItem.HEIGHT, ref overlapItem))
+        if (!OverlapCheck(posX, posY, inventoryItem.WIDTH, inventoryItem.HEIGHT, ref overlapItem, inventoryItem.itemData.Lshape, inventoryItem.rotated))
         {
             overlapItem = null;
             return false;
@@ -80,7 +81,21 @@ public class ItemGrid : MonoBehaviour
         {
             for (int j = 0; j < inventoryItem.HEIGHT; j++)
             {
-                inventoryItemSlot[posX + i, posY + j] = inventoryItem;
+                if (!inventoryItem.rotated)
+                {
+                    if (!inventoryItem.itemData.Lshape || !(i < inventoryItem.WIDTH - 1 && j > 0))
+                    {
+                        inventoryItemSlot[posX + i, posY + j] = inventoryItem;
+                        Debug.Log(new Vector2(posX + i, posY + j));
+                    }
+                } else
+                {
+                    if (!inventoryItem.itemData.Lshape || !(i > 0 && j > 0))
+                    {
+                        inventoryItemSlot[posX + i, posY + j] = inventoryItem;
+                        Debug.Log(new Vector2(posX + i, posY + j));
+                    }
+                }
             }
         }
 
@@ -118,22 +133,48 @@ public class ItemGrid : MonoBehaviour
         return position;
     }
 
-    private bool OverlapCheck(int posX, int posY, int width, int height, ref InventoryItem overlapItem)
+    private bool OverlapCheck(int posX, int posY, int width, int height, ref InventoryItem overlapItem, bool Lshape, bool rotated)
     {
         for (int i = 0; i < width; i++)
         {
             for (int j = 0; j < height; j++)
             {
-                if (inventoryItemSlot[posX + i, posY + j] != null)
+                if (!rotated)
                 {
-                    if (overlapItem == null)
+                    if (!Lshape || (!(i < width - 1 && j > 0)))
                     {
-                        overlapItem = inventoryItemSlot[posX + i, posY + j];
-                    } else
-                    {
-                        if (overlapItem != inventoryItemSlot[posX + i, posY + j])
+                        if (inventoryItemSlot[posX + i, posY + j] != null)
                         {
-                            return false;
+                            if (overlapItem == null)
+                            {
+                                overlapItem = inventoryItemSlot[posX + i, posY + j];
+                            }
+                            else
+                            {
+                                if (overlapItem != inventoryItemSlot[posX + i, posY + j])
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                } else
+                {
+                    if (!Lshape || (!(i > 0 && j > 0)))
+                    {
+                        if (inventoryItemSlot[posX + i, posY + j] != null)
+                        {
+                            if (overlapItem == null)
+                            {
+                                overlapItem = inventoryItemSlot[posX + i, posY + j];
+                            }
+                            else
+                            {
+                                if (overlapItem != inventoryItemSlot[posX + i, posY + j])
+                                {
+                                    return false;
+                                }
+                            }
                         }
                     }
                 }
@@ -176,7 +217,19 @@ public class ItemGrid : MonoBehaviour
         {
             for (int j = 0; j < item.HEIGHT; j++)
             {
-                inventoryItemSlot[item.onGridPositionX + i, item.onGridPositionY + j] = null;
+                if (!item.rotated)
+                {
+                    if (!item.itemData.Lshape || !(i < item.WIDTH - 1 && j > 0))
+                    {
+                        inventoryItemSlot[item.onGridPositionX + i, item.onGridPositionY + j] = null;
+                    }
+                } else
+                {
+                    if (!item.itemData.Lshape || !(i > 0 && j > 0))
+                    {
+                        inventoryItemSlot[item.onGridPositionX + i, item.onGridPositionY + j] = null;
+                    }
+                }
             }
         }
     }
