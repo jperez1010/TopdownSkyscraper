@@ -10,7 +10,7 @@ public class PlayerWalkState : State<PlayerStateEnum>
     private Rigidbody rb;
     protected String animation = "Walking";
     
-    public float speed = 5f;
+    public float speed = 15f;
     public float angularSpeed = 3f;
 
     Vector3 m_EulerAngleVelocity = new Vector3(0,1,0);
