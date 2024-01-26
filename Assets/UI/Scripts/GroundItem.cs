@@ -3,19 +3,11 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class GroundItem : MonoBehaviour, ISerializationCallbackReceiver
+[System.Serializable]
+public class GroundItem
 {
     public ItemObject item;
 
-    public void OnAfterDeserialize()
-    {
-    }
-
-    public void OnBeforeSerialize()
-    {
-        GetComponentInChildren<SpriteRenderer>().sprite = item.uiDisplay;
-#if UNITY_EDITOR
-        EditorUtility.SetDirty(GetComponentInChildren<SpriteRenderer>());
-#endif
-    }
+    [SerializeField]
+    public Vector3 position;
 }

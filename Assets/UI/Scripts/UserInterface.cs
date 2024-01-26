@@ -54,7 +54,7 @@ public abstract class UserInterace : MonoBehaviour
 
     public abstract void CreateSlots();
 
-    protected void AddEvent(GameObject obj, EventTriggerType type, UnityAction<BaseEventData> action)
+    public void AddEvent(GameObject obj, EventTriggerType type, UnityAction<BaseEventData> action)
     {
         EventTrigger trigger = obj.GetComponent<EventTrigger>();
         var eventTrigger = new EventTrigger.Entry();
@@ -112,8 +112,8 @@ public abstract class UserInterace : MonoBehaviour
             GameObject newObject = Instantiate(groundObjectPrefab);
             GameObject player = GameObject.FindWithTag("Player");
             newObject.transform.position = player.transform.position + new Vector3(player.transform.forward.x * 2, -player.transform.position.y, player.transform.forward.z * 2);
-            newObject.GetComponent<GroundItem>().item = slotsOnInterface[obj].ItemObject;
-            newObject.GetComponentInChildren<Billboard>().camera = Camera.main;
+            newObject.GetComponent<GroundItemHandler>().groundItem.item = slotsOnInterface[obj].ItemObject;
+            newObject.GetComponent<Billboard>().camera = Camera.main;
             newObject.GetComponentInChildren<SpriteRenderer>().sprite = slotsOnInterface[obj].ItemObject.uiDisplay;
             if (slotsOnInterface[obj].amount > 1)
             {
@@ -136,6 +136,36 @@ public abstract class UserInterace : MonoBehaviour
         {
             MouseData.tempItemBeingDragged.GetComponent<RectTransform>().position = Input.mousePosition;
         }
+    }
+
+    public void OnMouseClick(GameObject obj)
+    {
+        if (slotsOnInterface[obj].item.Id >= 0)
+        {
+            InventoryController inventoryController = FindObjectOfType(typeof(InventoryController)) as InventoryController;
+            ItemGrid itemGrid = FindObjectOfType(typeof(ItemGrid)) as ItemGrid;
+            AddToGridInventory(inventoryController, itemGrid, slotsOnInterface[obj]);
+            inventoryController.SelectedItemGrid = null;
+        }
+    }
+
+    public void AddToGridInventory(InventoryController inventoryController, ItemGrid itemGrid, InventorySlot obj)
+    {
+        inventoryController.unequippingItem = true;
+        inventoryController.SelectedItemGrid = itemGrid;
+        InventoryItem inventoryItem = Instantiate(inventoryController.itemPrefab).GetComponent<InventoryItem>();
+        inventoryItem.itemData = obj.item;
+        if (inventoryController.SelectedItemGrid.FindSpaceForObject(inventoryItem) == null)
+        {
+            Destroy(inventoryItem.gameObject);
+            inventoryController.SelectedItemGrid = null;
+            inventoryController.unequippingItem = false;
+            return;
+        }
+        inventoryItem.Set(inventoryItem.itemData);
+        inventoryController.InsertEquippedItem(inventoryItem);
+        obj.UpdateSlot(new Item(), 0);
+        inventoryController.unequippingItem = false;
     }
 }
 

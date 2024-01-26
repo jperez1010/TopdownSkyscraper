@@ -1,0 +1,11 @@
+Model Information:
+* title:	Unity Gun
+* source:	https://sketchfab.com/3d-models/unity-gun-8d1d3846b3974ee7953b8edf087cb9d5
+* author:	Thomas.Osterhammel (https://sketchfab.com/Thost)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Unity Gun" (https://sketchfab.com/3d-models/unity-gun-8d1d3846b3974ee7953b8edf087cb9d5) by Thomas.Osterhammel (https://sketchfab.com/Thost) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

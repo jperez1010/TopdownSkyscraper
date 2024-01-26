@@ -5,6 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEditor;
 using System.Runtime.Serialization;
+using UnityEngine.UI;
 
 public enum InterfaceType
 {
@@ -70,11 +71,27 @@ public class InventoryObject : ScriptableObject
         return null;
     }
 
+    public InventorySlot FindSlotOfType(ItemType itemType)
+    {
+        for (int i = 0; i < GetSlots.Length; i++)
+        {
+            for (int j = 0; j < GetSlots[i].AllowedItems.Length; j++)
+            {
+                if (GetSlots[i].AllowedItems[j] == itemType)
+                {
+                    return GetSlots[i];
+                }
+            }
+        }
+        return null;
+    }
+
     public InventorySlot SetEmptySlot(Item item, int amount)
     {
         for (int i = 0; i < GetSlots.Length; i++)
         {
-            if (GetSlots[i].item.Id <= -1)
+            Debug.Log(databaseObject.ItemObjects[item.Id]);
+            if (GetSlots[i].item.Id <= -1 && GetSlots[i].CanPlaceInSlot(databaseObject.ItemObjects[item.Id]))
             {
                 GetSlots[i].UpdateSlot(item, amount);
                 return GetSlots[i];

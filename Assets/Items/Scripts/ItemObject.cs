@@ -23,19 +23,44 @@ public enum Attributes
     Scavenger
 }
 
+[System.Serializable]
 public abstract class ItemObject : ScriptableObject
 {
     public Sprite uiDisplay;
     public bool stackable;
+    public GameObject characterDisplay;
     public ItemType type;
     [TextArea(15,20)]
     public string description;
     public Item data = new Item();
 
+    public List<string> boneNames = new List<string>();
+
     public Item CreateItem()
     {
         Item newItem = new Item(this);
         return newItem;
+    }
+
+    private void OnValidate()
+    {
+        boneNames.Clear();
+        if (characterDisplay == null)
+        {
+            return;
+        }
+        if (!characterDisplay.GetComponent<SkinnedMeshRenderer>())
+        {
+            return;
+        }
+
+        var renderer = characterDisplay.GetComponent<SkinnedMeshRenderer>();
+        var bones = renderer.bones;
+
+        foreach ( var t in bones )
+        {
+            boneNames.Add(t.name);
+        }
     }
 }
 
@@ -44,7 +69,14 @@ public class Item
 {
     public string Name;
     public int Id;
+    public int KeyId;
     public ItemBuff[] buffs;
+
+    public int width = 1;
+    public int height = 1;
+    public bool Lshape;
+
+    public Sprite itemIcon;
 
     public Item()
     {

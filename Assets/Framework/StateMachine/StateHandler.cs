@@ -5,7 +5,7 @@ using System;
 
 public abstract class StateHandler<EState> : MonoBehaviour where EState : Enum
 {
-    protected Dictionary<EState, State<EState>> states = new Dictionary<EState, State<EState>>();
+    public Dictionary<EState, State<EState>> states = new Dictionary<EState, State<EState>>();
 
     protected State<EState> currentState;
     protected State<EState> baseState;

@@ -5,13 +5,13 @@ using UnityEngine;
 public class triggerDoorController : MonoBehaviour
 {
 
-    [SerializeField] private Animator myDoor = null;
+    [SerializeField] private Animator myDoor;
     [SerializeField] private bool openTrigger = false;
     [SerializeField] private bool closeTrigger = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
             if (openTrigger)
             {
