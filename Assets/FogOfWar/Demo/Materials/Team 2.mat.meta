@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 63498584e5debe94f8368e8d0982eb2b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 229484
+  packageName: Pixel-Perfect Fog Of War
+  packageVersion: 2.0.1
+  assetPath: Assets/FogOfWar/Demo/Materials/Team 2.mat
+  uploadId: 633053

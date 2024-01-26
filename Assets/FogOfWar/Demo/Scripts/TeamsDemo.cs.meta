@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 551fa34bd0c1b944d8091d2aaf9b29c9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 229484
+  packageName: Pixel-Perfect Fog Of War
+  packageVersion: 2.0.1
+  assetPath: Assets/FogOfWar/Demo/Scripts/TeamsDemo.cs
+  uploadId: 633053

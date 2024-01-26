@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2db21ceaec71dcd4b8e64939788c8dc1
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 229484
+  packageName: Pixel-Perfect Fog Of War
+  packageVersion: 2.0.1
+  assetPath: Assets/FogOfWar/Demo/03_Minimap.unity
+  uploadId: 633053
