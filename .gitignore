@@ -8,7 +8,6 @@ UserSettings/
 Assets/Mirror/
 Assets/com.rlabrecque.steamworks.net/
 Assets/ParrelSync/
-.vs/
 
 *.csproj
 *.sln
