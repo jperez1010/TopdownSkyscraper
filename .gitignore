@@ -9,6 +9,7 @@ Assets/Mirror/
 Assets/com.rlabrecque.steamworks.net/
 Assets/ParrelSync/
 .vs/
+.vscode/
 
 *.csproj
 *.sln
