@@ -162,7 +162,8 @@ public abstract class UserInterace : MonoBehaviour
             inventoryController.unequippingItem = false;
             return;
         }
-        inventoryItem.Set(inventoryItem.itemData);
+        inventoryController.inventoryItem.AddItem(inventoryItem.itemData, 1);
+        inventoryItem.Set(inventoryItem.itemData, inventoryController.databaseObject.ItemObjects[inventoryItem.itemData.Id].uiDisplay);
         inventoryController.InsertEquippedItem(inventoryItem);
         obj.UpdateSlot(new Item(), 0);
         inventoryController.unequippingItem = false;

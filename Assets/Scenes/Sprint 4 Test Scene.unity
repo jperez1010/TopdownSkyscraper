@@ -358,6 +358,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualCue: {fileID: 709996615}
+  inkJSON: {fileID: 4900000, guid: 52d05fcdda3e355419455fe14823703a, type: 3}
+  playerHasCorrectKey: 0
   keyId: 0
   myDoor: {fileID: 355145331}
   openTrigger: 1
@@ -743,8 +745,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipmentItem: {fileID: 11400000, guid: 107c26f88d4c7834187e59e46cddf120, type: 2}
+  inventoryItem: {fileID: 11400000, guid: 4056776fed9cb764384f73994fb79365, type: 2}
+  equipmentInterface: {fileID: 680765866}
   items:
   - {fileID: 11400000, guid: 79158c3b1b7a8ea4d970d6584eb54c91, type: 2}
+  - {fileID: 11400000, guid: f562c9a063006f248aa6cc98bf325d9e, type: 2}
+  - {fileID: 11400000, guid: 867245d680854744d9e7cf09861a8157, type: 2}
+  databaseObject: {fileID: 11400000, guid: 531b8d6b83e9b0c4683590a5a5370efc, type: 2}
   itemPrefab: {fileID: 6822348245457007875, guid: cd28c0d82cd2226458ed75f5c804f407,
     type: 3}
   CanvasTransform: {fileID: 1282504162}
@@ -2769,17 +2776,17 @@ PrefabInstance:
     - target: {fileID: 2125666810123680933, guid: 3312f84ae45f2f344a88ed29215cdd9c,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2125666810123680933, guid: 3312f84ae45f2f344a88ed29215cdd9c,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2125666810123680933, guid: 3312f84ae45f2f344a88ed29215cdd9c,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2125666810123680933, guid: 3312f84ae45f2f344a88ed29215cdd9c,
         type: 3}
@@ -3244,6 +3251,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 833312452422304430, guid: 8cc9f5fcb4814394ea54ca4476326a87,
         type: 3}
+      propertyPath: itemGrid
+      value: 
+      objectReference: {fileID: 818490432}
+    - target: {fileID: 833312452422304430, guid: 8cc9f5fcb4814394ea54ca4476326a87,
+        type: 3}
       propertyPath: inventory
       value: 
       objectReference: {fileID: 11400000, guid: 4056776fed9cb764384f73994fb79365,
@@ -3418,6 +3430,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 4.386462
+      objectReference: {fileID: 0}
+    - target: {fileID: 3061867760533110294, guid: 8cc9f5fcb4814394ea54ca4476326a87,
+        type: 3}
+      propertyPath: SavePath
+      value: /playerLocation.Save
       objectReference: {fileID: 0}
     - target: {fileID: 3085406851299537299, guid: 8cc9f5fcb4814394ea54ca4476326a87,
         type: 3}

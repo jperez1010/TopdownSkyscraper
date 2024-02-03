@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public InventoryObject inventory;
     public InventoryObject equipment;
     public InventoryController gridController;
+    public ItemGrid itemGrid;
     public WorldItemList worldItemList;
     public Attribute[] attributes;
     public PlayerLocation playerLocation;
@@ -43,7 +44,7 @@ public class Player : MonoBehaviour
             {
                 Destroy(other.gameObject);
             }
-            //gridController.AddItem(_item);
+            gridController.AddItem(_item, itemGrid);
 
         }
         var elevator = other.GetComponent<BaseElevator>();
@@ -222,6 +223,13 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.V))
         {
             inventory.Load();
+            for (int i = 0; i < inventory.Container.slots.Length; i++)
+            {
+                if (inventory.Container.slots[i].item.Id > -1)
+                {
+                    gridController.AddItem(inventory.Container.slots[i].item, itemGrid);
+                }
+            }
             equipment.Load();
             playerLocation.Load();
             worldItemList.Load();

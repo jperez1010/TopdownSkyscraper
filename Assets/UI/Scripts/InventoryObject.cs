@@ -50,6 +50,9 @@ public class InventoryObject : ScriptableObject
             int counter = 0;
             for (int i = 0; i < GetSlots.Length; i++)
             {
+                Debug.Log(GetSlots[i]);
+                Debug.Log(GetSlots[i].item);
+                Debug.Log(GetSlots[i].item.Id);
                 if (GetSlots[i].item.Id <= -1)
                 {
                     counter++;

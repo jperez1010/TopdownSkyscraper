@@ -51,6 +51,18 @@ public class InventoryItem : MonoBehaviour
         GetComponent<RectTransform>().sizeDelta = size;
     }
 
+    internal void Set(Item itemData, Sprite itemIcon)
+    {
+        this.itemData = itemData;
+
+        GetComponent<Image>().sprite = itemIcon;
+
+        Vector2 size = new Vector2();
+        size.x = itemData.width * ItemGrid.tileSizeWidth;
+        size.y = itemData.height * ItemGrid.tileSizeHeight;
+        GetComponent<RectTransform>().sizeDelta = size;
+    }
+
     internal void Rotate()
     {
         rotated = !rotated;

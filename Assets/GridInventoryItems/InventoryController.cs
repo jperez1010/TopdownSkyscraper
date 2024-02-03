@@ -8,6 +8,8 @@ public class InventoryController : MonoBehaviour
     private ItemGrid selectedItemGrid;
 
     public InventoryObject equipmentItem;
+    public InventoryObject inventoryItem;
+    public UserInterace equipmentInterface;
     public ItemGrid SelectedItemGrid { 
         get => selectedItemGrid;
         set
@@ -23,6 +25,8 @@ public class InventoryController : MonoBehaviour
 
     [SerializeField]
     List<ItemObject> items;
+    [SerializeField]
+    public ItemDatabaseObject databaseObject;
     [SerializeField]
     public GameObject itemPrefab;
     [SerializeField]
@@ -41,25 +45,25 @@ public class InventoryController : MonoBehaviour
     {
         ItemIconDrag();
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        /*if (Input.GetKeyDown(KeyCode.Q))
         {
             if (selectedItem == null)
             {
                 CreateRandomItem();
             }
-        }
+        }*/
 
-        if (Input.GetKeyDown(KeyCode.W))
+        /*if (Input.GetKeyDown(KeyCode.W))
         {
             InsertRandomItem();
-        }
+        }*/
 
         if (Input.GetKeyDown(KeyCode.R))
         {
             RotateItem();
         }
 
-        if (selectedItemGrid == null)
+        if (selectedItemGrid == null || !selectedItemGrid.gameObject.activeInHierarchy)
         {
             inventoryHighlight.Show(false);
             return;
@@ -161,10 +165,10 @@ public class InventoryController : MonoBehaviour
         rectTransform.SetAsLastSibling();
 
         int selectedItemID = UnityEngine.Random.Range(0, items.Count);
-        inventoryItem.Set(items[selectedItemID].data);
+        inventoryItem.Set(items[selectedItemID].data, databaseObject.ItemObjects[items[selectedItemID].data.Id].uiDisplay);
     }
 
-    public void AddItem(Item itemData)
+    public void AddItem(Item itemData, ItemGrid itemGrid)
     {
         InventoryItem inventoryItem = Instantiate(itemPrefab).GetComponent<InventoryItem>();
         selectedItem = inventoryItem;
@@ -172,10 +176,13 @@ public class InventoryController : MonoBehaviour
         rectTransform.SetParent(CanvasTransform);
         rectTransform.SetAsLastSibling();
 
-        inventoryItem.Set(itemData);
+        inventoryItem.Set(itemData, databaseObject.ItemObjects[itemData.Id].uiDisplay);
+
         InventoryItem itemToInsert = selectedItem;
         selectedItem = null;
+        selectedItemGrid = itemGrid;
         InsertItem(itemToInsert);
+        selectedItemGrid = null;
     }
 
     private void MouseClickOnGrid()
@@ -205,6 +212,7 @@ public class InventoryController : MonoBehaviour
             {
                 targetSlot.parent.AddToGridInventory(this, selectedItemGrid, targetSlot);
             }
+            inventoryItem.RemoveItem(selectedItem.itemData);
             equipmentItem.AddItem(selectedItem.itemData, 1);
             Destroy(selectedItem.gameObject);
             //inventoryHighlight.Show(false);
