@@ -19,7 +19,7 @@ public class InventoryController : MonoBehaviour
         }
     }
 
-    InventoryItem selectedItem;
+    public InventoryItem selectedItem;
     InventoryItem overlapItem;
     RectTransform rectTransform;
 

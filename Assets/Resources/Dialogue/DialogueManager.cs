@@ -130,6 +130,24 @@ public class DialogueManager : MonoBehaviour
         ContinueDoorDialogue();
     }
 
+    public void EnterDialogueMode(TextAsset inkJSON, BaseSavePoint savePoint, Player player)
+    {
+        currentStory = new Story(inkJSON.text);
+        dialogueIsPlaying = true;
+        dialoguePanel.SetActive(true);
+        dialogueVariables.StartListening(currentStory);
+        currentStory.BindExternalFunction("saveGame", () =>
+        {
+            savePoint.SaveGame(player);
+        });
+        for (int i = 0; i < choices.Length; i++)
+        {
+            choices[i].gameObject.SetActive(false);
+        }
+
+        ContinueSavePointDialogue();
+    }
+
     private IEnumerator ExitDialogueMode()
     {
         yield return new WaitForSeconds(0.2f);
@@ -150,6 +168,21 @@ public class DialogueManager : MonoBehaviour
 
         dialogueVariables.StopListening(currentStory);
         currentStory.UnbindExternalFunction("openDoor");
+
+        dialogueIsPlaying = false;
+        dialoguePanel.SetActive(false);
+        //StartCoroutine(enableMovement());
+        dialogueText.text = "";
+        //targetHP = Vector3.zero;
+        //targetMythogem = new Vector3(-325f, -158f, 0f);
+    }
+
+    private IEnumerator ExitSavePointDialogueMode()
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        dialogueVariables.StopListening(currentStory);
+        currentStory.UnbindExternalFunction("saveGame");
 
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
@@ -192,6 +225,24 @@ public class DialogueManager : MonoBehaviour
         else
         {
             StartCoroutine(ExitDoorDialogueMode());
+        }
+    }
+
+    private void ContinueSavePointDialogue()
+    {
+        if (currentStory.canContinue)
+        {
+            // set text for the current dialogue line
+            if (displayLineCoroutine != null)
+            {
+                StopCoroutine(displayLineCoroutine);
+            }
+            displayLineCoroutine = StartCoroutine(DisplayLine(currentStory.Continue()));
+            // display choices, if any, for this dialogue line
+        }
+        else
+        {
+            StartCoroutine(ExitSavePointDialogueMode());
         }
     }
 
