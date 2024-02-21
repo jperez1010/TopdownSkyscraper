@@ -348,24 +348,24 @@ public class DialogueManager : MonoBehaviour
         //Health.GetComponent<RectTransform>().localPosition = position;
         //Vector3 position2 = Vector3.Lerp(Mythogem.GetComponent<RectTransform>().localPosition, targetMythogem, lerpSpeed);
         //Mythogem.GetComponent<RectTransform>().localPosition = position2;
-        Vector3 position3 = Vector3.Lerp(dialoguePanel.transform.Find("Dialogue Panel").GetComponent<RectTransform>().anchoredPosition, targetPanel, lerpSpeed);
-        dialoguePanel.transform.Find("Dialogue Panel").GetComponent<RectTransform>().anchoredPosition = position3;
-        for (int i = 0; i < choices.Length; i++)
-        {
-            if (choices[i].activeInHierarchy)
-            {
-                Vector3 targetChoice = choices[i].GetComponent<RectTransform>().anchoredPosition;
-                targetChoice.y = 16f - i * 18f;
-                Vector3 position4 = Vector3.Lerp(choices[i].GetComponent<RectTransform>().anchoredPosition, targetChoice, lerpSpeed);
-                choices[i].GetComponent<RectTransform>().anchoredPosition = position4;
-            } else
-            {
-                Vector3 targetChoice = choices[i].GetComponent<RectTransform>().anchoredPosition;
-                targetChoice.y = 16f;
-                Vector3 position4 = Vector3.Lerp(choices[i].GetComponent<RectTransform>().anchoredPosition, targetChoice, lerpSpeed);
-                choices[i].GetComponent<RectTransform>().anchoredPosition = position4;
-            }
-        }
+        //Vector3 position3 = Vector3.Lerp(dialoguePanel.transform.Find("Dialogue Panel").GetComponent<RectTransform>().anchoredPosition, targetPanel, lerpSpeed);
+        //dialoguePanel.transform.Find("Dialogue Panel").GetComponent<RectTransform>().anchoredPosition = position3;
+        //for (int i = 0; i < choices.Length; i++)
+        //{
+            //if (choices[i].activeInHierarchy)
+            //{
+                //Vector3 targetChoice = choices[i].GetComponent<RectTransform>().anchoredPosition;
+                //targetChoice.y = 16f - i * 18f;
+                //Vector3 position4 = Vector3.Lerp(choices[i].GetComponent<RectTransform>().anchoredPosition, targetChoice, lerpSpeed);
+                //choices[i].GetComponent<RectTransform>().anchoredPosition = position4;
+            //} else
+            //{
+                //Vector3 targetChoice = choices[i].GetComponent<RectTransform>().anchoredPosition;
+                //targetChoice.y = 16f;
+                //Vector3 position4 = Vector3.Lerp(choices[i].GetComponent<RectTransform>().anchoredPosition, targetChoice, lerpSpeed);
+                //choices[i].GetComponent<RectTransform>().anchoredPosition = position4;
+            //}
+        //}
     }
     /*private IEnumerator disableMovement()
     {
