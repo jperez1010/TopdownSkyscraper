@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.Animations;
 using System;
 
 public class PlayerWalkState : State<PlayerStateEnum>
@@ -10,7 +9,7 @@ public class PlayerWalkState : State<PlayerStateEnum>
     private Rigidbody rb;
     protected String animation = "Walking";
     
-    public float speed = 15f;
+    public float speed = 8f;
     public float angularSpeed = 3f;
 
     Vector3 m_EulerAngleVelocity = new Vector3(0,1,0);

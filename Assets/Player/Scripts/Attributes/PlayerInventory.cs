@@ -10,6 +10,8 @@ public class PlayerInventory : MonoBehaviour
     public GameObject equipmentUI;
     private void Awake()
     {
+        //inventoryUI.SetActive(true);
+        //equipmentUI.SetActive(true);
         playerInventory = this;
         DontDestroyOnLoad(gameObject);
     }

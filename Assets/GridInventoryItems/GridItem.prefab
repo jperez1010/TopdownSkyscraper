@@ -91,6 +91,7 @@ MonoBehaviour:
   itemData:
     Name: 
     Id: -1
+    KeyId: 0
     buffs: []
     width: 1
     height: 1

@@ -30,7 +30,7 @@ public class LockedDoor : MonoBehaviour
             visualCue.SetActive(true);
             if (Input.GetKeyDown(KeyCode.E))
             {
-                DialogueManager.GetInstance().EnterDialogueMode(inkJSON, this);
+                return;
             }
         }
         else
