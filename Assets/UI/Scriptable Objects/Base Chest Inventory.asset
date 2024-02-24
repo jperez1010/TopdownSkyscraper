@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3fa1f5a269355334287b8a544b030e97, type: 3}
-  m_Name: Player Inventory
+  m_Name: Base Chest Inventory
   m_EditorClassIdentifier: 
-  SavePath: /inventory.Save
-  databaseObject: {fileID: 11400000, guid: 531b8d6b83e9b0c4683590a5a5370efc, type: 2}
+  SavePath: 
+  databaseObject: {fileID: 0}
   type: 0
   Container:
     slots:

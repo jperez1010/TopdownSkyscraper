@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public InventoryObject inventory;
     public InventoryObject equipment;
     public InventoryController gridController;
+    public ItemGrid itemGrid;
     public WorldItemList worldItemList;
     public Attribute[] attributes;
     public PlayerLocation playerLocation;
@@ -39,17 +40,13 @@ public class Player : MonoBehaviour
         if (item)
         {
             Item _item = new Item(item.groundItem.item);
-            if (inventory.AddItem(_item, 1))
+            InventorySlot newSlot = inventory.AddItemFromFieldToInventory(_item, 1);
+            if (newSlot != null)
             {
                 Destroy(other.gameObject);
             }
-            //gridController.AddItem(_item);
+            gridController.AddItem(_item, itemGrid, newSlot);
 
-        }
-        var elevator = other.GetComponent<BaseElevator>();
-        if (elevator)
-        {
-            elevator.GoToBase("BaseScene");
         }
     }
 
@@ -222,6 +219,13 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.V))
         {
             inventory.Load();
+            for (int i = 0; i < inventory.Container.slots.Length; i++)
+            {
+                if (inventory.Container.slots[i].item.Id > -1)
+                {
+                    gridController.AddItem(inventory.Container.slots[i].item, itemGrid, inventory.Container.slots[i]);
+                }
+            }
             equipment.Load();
             playerLocation.Load();
             worldItemList.Load();

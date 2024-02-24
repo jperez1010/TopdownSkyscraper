@@ -26,7 +26,6 @@ MonoBehaviour:
         width: 1
         height: 1
         Lshape: 0
-        itemIcon: {fileID: 0}
       amount: 0
     - AllowedItems: 01000000
       item:
@@ -37,7 +36,6 @@ MonoBehaviour:
         width: 1
         height: 1
         Lshape: 0
-        itemIcon: {fileID: 0}
       amount: 0
     - AllowedItems: 05000000
       item:
@@ -48,9 +46,8 @@ MonoBehaviour:
         width: 1
         height: 1
         Lshape: 0
-        itemIcon: {fileID: 0}
       amount: 0
-    - AllowedItems: 05000000
+    - AllowedItems: 
       item:
         Name: 
         Id: -1
@@ -59,9 +56,8 @@ MonoBehaviour:
         width: 1
         height: 1
         Lshape: 0
-        itemIcon: {fileID: 0}
       amount: 0
-    - AllowedItems: 04000000
+    - AllowedItems: 
       item:
         Name: 
         Id: -1
@@ -70,5 +66,4 @@ MonoBehaviour:
         width: 1
         height: 1
         Lshape: 0
-        itemIcon: {fileID: 0}
       amount: 0

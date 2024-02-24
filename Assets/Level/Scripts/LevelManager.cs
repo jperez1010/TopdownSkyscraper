@@ -46,6 +46,26 @@ public class LevelManager : MonoBehaviour
         StartCoroutine(WaitForSceneLoad(scene));
     }
 
+    public async void LoadScene(int sceneIndex)
+    {
+        var scene = SceneManager.LoadSceneAsync(sceneIndex);
+        scene.allowSceneActivation = false;
+
+        _loaderCanvas.SetActive(true);
+
+        do
+        {
+            await Task.Delay(1000);
+
+           _progressBar.value = scene.progress;
+
+        } while (scene.progress < 0.9f);
+
+        scene.allowSceneActivation = true;
+        _loaderCanvas.SetActive(false);
+        StartCoroutine(WaitForSceneLoad(scene));
+    }
+
     public IEnumerator WaitForSceneLoad(AsyncOperation sceneLoad)
     {
         while (!sceneLoad.isDone)

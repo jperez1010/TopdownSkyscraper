@@ -76,6 +76,7 @@ public class Item
     public int height = 1;
     public bool Lshape;
 
+    [System.NonSerialized]
     public Sprite itemIcon;
 
     public Item()

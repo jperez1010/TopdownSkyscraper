@@ -1,13 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class InventoryController : MonoBehaviour
+public class InventoryController : GeneralUserInterface
 {
     private ItemGrid selectedItemGrid;
 
-    public InventoryObject equipmentItem;
+    public InventoryObject equipment;
+    public UserInterace equipmentInterface;
     public ItemGrid SelectedItemGrid { 
         get => selectedItemGrid;
         set
@@ -17,12 +20,14 @@ public class InventoryController : MonoBehaviour
         }
     }
 
-    InventoryItem selectedItem;
+    public InventoryItem selectedItem;
     InventoryItem overlapItem;
     RectTransform rectTransform;
 
     [SerializeField]
     List<ItemObject> items;
+    [SerializeField]
+    public ItemDatabaseObject databaseObject;
     [SerializeField]
     public GameObject itemPrefab;
     [SerializeField]
@@ -37,29 +42,37 @@ public class InventoryController : MonoBehaviour
         inventoryHighlight = GetComponent<InventoryHighlight>();
     }
 
+    private void Start()
+    {
+        for (int i = 0; i < inventory.GetSlots.Length; i++)
+        {
+            inventory.GetSlots[i].parent = this;
+        }
+    }
+
     private void Update()
     {
         ItemIconDrag();
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        /*if (Input.GetKeyDown(KeyCode.Q))
         {
             if (selectedItem == null)
             {
                 CreateRandomItem();
             }
-        }
+        }*/
 
-        if (Input.GetKeyDown(KeyCode.W))
+        /*if (Input.GetKeyDown(KeyCode.W))
         {
             InsertRandomItem();
-        }
+        }*/
 
         if (Input.GetKeyDown(KeyCode.R))
         {
             RotateItem();
         }
 
-        if (selectedItemGrid == null)
+        if (selectedItemGrid == null || !selectedItemGrid.gameObject.activeInHierarchy)
         {
             inventoryHighlight.Show(false);
             return;
@@ -109,13 +122,11 @@ public class InventoryController : MonoBehaviour
     private void InsertItem(InventoryItem itemToInsert)
     {
         Vector2Int? posOnGrid = selectedItemGrid.FindSpaceForObject(itemToInsert);
-        Debug.Log(posOnGrid);
         if (posOnGrid == null)
         {
             Destroy(itemToInsert.gameObject);
             return;
         }
-        Debug.Log(selectedItemGrid);
         selectedItemGrid.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
     }
 
@@ -161,10 +172,10 @@ public class InventoryController : MonoBehaviour
         rectTransform.SetAsLastSibling();
 
         int selectedItemID = UnityEngine.Random.Range(0, items.Count);
-        inventoryItem.Set(items[selectedItemID].data);
+        inventoryItem.Set(items[selectedItemID].data, databaseObject.ItemObjects[items[selectedItemID].data.Id].uiDisplay);
     }
 
-    public void AddItem(Item itemData)
+    public void AddItem(Item itemData, ItemGrid itemGrid, InventorySlot newSlot)
     {
         InventoryItem inventoryItem = Instantiate(itemPrefab).GetComponent<InventoryItem>();
         selectedItem = inventoryItem;
@@ -172,10 +183,14 @@ public class InventoryController : MonoBehaviour
         rectTransform.SetParent(CanvasTransform);
         rectTransform.SetAsLastSibling();
 
-        inventoryItem.Set(itemData);
+        inventoryItem.Set(itemData, databaseObject.ItemObjects[itemData.Id].uiDisplay);
+
         InventoryItem itemToInsert = selectedItem;
         selectedItem = null;
+        selectedItemGrid = itemGrid;
         InsertItem(itemToInsert);
+        selectedItemGrid = null;
+        itemGrid.slotsOnInterface.Add(itemToInsert, newSlot);
     }
 
     private void MouseClickOnGrid()
@@ -198,14 +213,16 @@ public class InventoryController : MonoBehaviour
         {
             PickUpItem(tileGridPosition);
         }
+
         if (selectedItem != null)
         {
-            InventorySlot targetSlot = equipmentItem.FindSlotOfType(equipmentItem.databaseObject.ItemObjects[selectedItem.itemData.Id].type);
+            InventorySlot targetSlot = equipment.FindSlotOfType(equipment.databaseObject.ItemObjects[selectedItem.itemData.Id].type);
             if (targetSlot.item.Id >= 0)
             {
-                targetSlot.parent.AddToGridInventory(this, selectedItemGrid, targetSlot);
+                UserInterace UI = (UserInterace)targetSlot.parent;
+                UI.AddToGridInventory(this, selectedItemGrid, targetSlot);
             }
-            equipmentItem.AddItem(selectedItem.itemData, 1);
+            inventory.SwapItems(selectedItemGrid.slotsOnInterface[selectedItem], targetSlot);
             Destroy(selectedItem.gameObject);
             //inventoryHighlight.Show(false);
         }

@@ -43,6 +43,19 @@ public class InventoryObject : ScriptableObject
         return true;
     }
 
+    public InventorySlot AddItemFromFieldToInventory(Item item, int amount)
+    {
+        if (EmptySlotCount <= 0)
+            return null;
+        InventorySlot slot = FindItemOnInventory(item);
+        if (!databaseObject.ItemObjects[item.Id].stackable || slot == null)
+        {
+            return SetEmptySlot(item, amount); ;
+        }
+        slot.AddAmount(amount);
+        return slot;
+    }
+
     public int EmptySlotCount
     {
         get
@@ -50,6 +63,7 @@ public class InventoryObject : ScriptableObject
             int counter = 0;
             for (int i = 0; i < GetSlots.Length; i++)
             {
+                Debug.Log(GetSlots[i].item);
                 if (GetSlots[i].item.Id <= -1)
                 {
                     counter++;
@@ -64,6 +78,18 @@ public class InventoryObject : ScriptableObject
         for (int i = 0; i < GetSlots.Length; i++)
         {
             if (GetSlots[i].item.Id == item.Id)
+            {
+                return GetSlots[i];
+            }
+        }
+        return null;
+    }
+
+    public InventorySlot FindItemOnInventory(int Id)
+    {
+        for (int i = 0; i < GetSlots.Length; i++)
+        {
+            if (GetSlots[i].item.Id == Id)
             {
                 return GetSlots[i];
             }
@@ -90,7 +116,6 @@ public class InventoryObject : ScriptableObject
     {
         for (int i = 0; i < GetSlots.Length; i++)
         {
-            Debug.Log(databaseObject.ItemObjects[item.Id]);
             if (GetSlots[i].item.Id <= -1 && GetSlots[i].CanPlaceInSlot(databaseObject.ItemObjects[item.Id]))
             {
                 GetSlots[i].UpdateSlot(item, amount);
@@ -192,7 +217,7 @@ public class InventorySlot
 {
     public ItemType[] AllowedItems = new ItemType[0];
     [System.NonSerialized]
-    public UserInterace parent;
+    public GeneralUserInterface parent;
     [System.NonSerialized]
     public GameObject slotDisplay;
     [System.NonSerialized]
@@ -260,7 +285,6 @@ public class InventorySlot
                 return true;
             }
         }
-        Debug.Log(_itemObject.type);
         return false;
     }
 }

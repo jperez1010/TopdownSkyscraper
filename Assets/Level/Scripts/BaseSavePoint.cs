@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseElevator : MonoBehaviour
+public class BaseSavePoint : MonoBehaviour
 {
     [Header("Visual Cue")]
     [SerializeField] private GameObject visualCue;
@@ -51,8 +51,15 @@ public class BaseElevator : MonoBehaviour
         }
     }
 
-    public void UseElevator(int SceneIndex)
+    public void SaveGame(Player player)
     {
-        LevelManager.levelManagerInstance.LoadScene(SceneIndex);
+        player.playerLocation.location = player.transform.position;
+        player.inventory.Save();
+        player.equipment.Save();
+        player.playerLocation.Save();
+        player.worldItemList.WorldItems.groundItems.Clear();
+        player.worldItemList.WorldItems.itemPositions.Clear();
+        player.saveItemData.Invoke();
+        StartCoroutine(player.SaveWorldItems());
     }
 }

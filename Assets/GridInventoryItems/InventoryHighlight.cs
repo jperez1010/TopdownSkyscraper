@@ -40,5 +40,6 @@ public class InventoryHighlight : MonoBehaviour
     public void Show(bool b)
     {
         highLighter.gameObject.SetActive(b);
+        highLighter.gameObject.transform.SetAsFirstSibling();
     }
 }
