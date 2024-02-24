@@ -7,11 +7,10 @@ using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using System;
 
-public abstract class UserInterace : MonoBehaviour
+public abstract class UserInterace : GeneralUserInterface
 {
     public GameObject inventoryPrefab;
     public GameObject groundObjectPrefab;
-    public InventoryObject inventory;
 
     public Dictionary<GameObject, InventorySlot> slotsOnInterface = new Dictionary<GameObject, InventorySlot>();
 
@@ -162,7 +161,9 @@ public abstract class UserInterace : MonoBehaviour
             inventoryController.unequippingItem = false;
             return;
         }
-        inventoryController.inventoryItem.AddItem(inventoryItem.itemData, 1);
+        InventorySlot newSlot = inventoryController.inventory.FindItemOnInventory(-1);
+        inventoryController.inventory.SwapItems(obj, newSlot);
+        itemGrid.slotsOnInterface.Add(inventoryItem, newSlot);
         inventoryItem.Set(inventoryItem.itemData, inventoryController.databaseObject.ItemObjects[inventoryItem.itemData.Id].uiDisplay);
         inventoryController.InsertEquippedItem(inventoryItem);
         obj.UpdateSlot(new Item(), 0);

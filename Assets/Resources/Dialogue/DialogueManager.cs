@@ -49,6 +49,7 @@ public class DialogueManager : MonoBehaviour
         }
         instance = this;
         dialogueVariables = new DialogueVariables(globalsInkFile.filePath);
+        DontDestroyOnLoad(gameObject);
     }
 
     public static DialogueManager GetInstance()
@@ -148,6 +149,24 @@ public class DialogueManager : MonoBehaviour
         ContinueSavePointDialogue();
     }
 
+    public void EnterDialogueMode(TextAsset inkJSON, BaseElevator elevator, Player player)
+    {
+        currentStory = new Story(inkJSON.text);
+        dialogueIsPlaying = true;
+        dialoguePanel.SetActive(true);
+        dialogueVariables.StartListening(currentStory);
+        currentStory.BindExternalFunction("useElevator", () =>
+        {
+            elevator.UseElevator(1);
+        });
+        for (int i = 0; i < choices.Length; i++)
+        {
+            choices[i].gameObject.SetActive(false);
+        }
+
+        ContinueElevatorDialogue();
+    }
+
     private IEnumerator ExitDialogueMode()
     {
         yield return new WaitForSeconds(0.2f);
@@ -183,6 +202,21 @@ public class DialogueManager : MonoBehaviour
 
         dialogueVariables.StopListening(currentStory);
         currentStory.UnbindExternalFunction("saveGame");
+
+        dialogueIsPlaying = false;
+        dialoguePanel.SetActive(false);
+        //StartCoroutine(enableMovement());
+        dialogueText.text = "";
+        //targetHP = Vector3.zero;
+        //targetMythogem = new Vector3(-325f, -158f, 0f);
+    }
+
+    private IEnumerator ExitElevatorDialogueMode()
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        dialogueVariables.StopListening(currentStory);
+        currentStory.UnbindExternalFunction("useElevator");
 
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
@@ -243,6 +277,24 @@ public class DialogueManager : MonoBehaviour
         else
         {
             StartCoroutine(ExitSavePointDialogueMode());
+        }
+    }
+
+    private void ContinueElevatorDialogue()
+    {
+        if (currentStory.canContinue)
+        {
+            // set text for the current dialogue line
+            if (displayLineCoroutine != null)
+            {
+                StopCoroutine(displayLineCoroutine);
+            }
+            displayLineCoroutine = StartCoroutine(DisplayLine(currentStory.Continue()));
+            // display choices, if any, for this dialogue line
+        }
+        else
+        {
+            StartCoroutine(ExitElevatorDialogueMode());
         }
     }
 

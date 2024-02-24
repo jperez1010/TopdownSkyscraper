@@ -40,17 +40,13 @@ public class Player : MonoBehaviour
         if (item)
         {
             Item _item = new Item(item.groundItem.item);
-            if (inventory.AddItem(_item, 1))
+            InventorySlot newSlot = inventory.AddItemFromFieldToInventory(_item, 1);
+            if (newSlot != null)
             {
                 Destroy(other.gameObject);
             }
-            gridController.AddItem(_item, itemGrid);
+            gridController.AddItem(_item, itemGrid, newSlot);
 
-        }
-        var elevator = other.GetComponent<BaseElevator>();
-        if (elevator)
-        {
-            elevator.GoToBase("BaseScene");
         }
     }
 
@@ -227,7 +223,7 @@ public class Player : MonoBehaviour
             {
                 if (inventory.Container.slots[i].item.Id > -1)
                 {
-                    gridController.AddItem(inventory.Container.slots[i].item, itemGrid);
+                    gridController.AddItem(inventory.Container.slots[i].item, itemGrid, inventory.Container.slots[i]);
                 }
             }
             equipment.Load();

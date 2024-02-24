@@ -18,6 +18,8 @@ public class ItemGrid : MonoBehaviour
 
     RectTransform rectTransform;
 
+    public Dictionary<InventoryItem, InventorySlot> slotsOnInterface = new Dictionary<InventoryItem, InventorySlot>();
+
     private void Start()
     {
         rectTransform = GetComponent<RectTransform>();
