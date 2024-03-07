@@ -96,11 +96,14 @@ public class Item
                 attribute = item.data.buffs[i].attribute
             };
         }
+        width = item.data.width;
+        height = item.data.height;
+        Lshape = item.data.Lshape;
     }
 }
 
 [System.Serializable]
-public class ItemBuff: IModifier
+public class ItemBuff : IModifier
 {
     public Attributes attribute;
     public int value;

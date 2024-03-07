@@ -16,9 +16,9 @@ public class StaticInterface : UserInterace
 
             AddEvent(obj, EventTriggerType.PointerEnter, delegate { OnEnter(obj); });
             AddEvent(obj, EventTriggerType.PointerExit, delegate { OnExit(obj); });
-            AddEvent(obj, EventTriggerType.BeginDrag, delegate { OnDragStart(obj); });
-            AddEvent(obj, EventTriggerType.EndDrag, delegate { OnDragEnd(obj); });
-            AddEvent(obj, EventTriggerType.Drag, delegate { OnDrag(obj); });
+            //AddEvent(obj, EventTriggerType.BeginDrag, delegate { OnDragStart(obj); });
+            //AddEvent(obj, EventTriggerType.EndDrag, delegate { OnDragEnd(obj); });
+            //AddEvent(obj, EventTriggerType.Drag, delegate { OnDrag(obj); });
             AddEvent(obj, EventTriggerType.PointerClick, delegate { OnMouseClick(obj);  });
             inventory.GetSlots[i].slotDisplay = obj;
 

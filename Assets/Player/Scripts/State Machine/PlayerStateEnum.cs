@@ -7,5 +7,6 @@ public enum PlayerStateEnum
     IDLE,
     WALK,
     RUN,
-    ATTACK
+    ATTACK,
+    RANGEATTACK
 }

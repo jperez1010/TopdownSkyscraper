@@ -54,6 +54,7 @@ public class InventoryItem : MonoBehaviour
     internal void Set(Item itemData, Sprite itemIcon)
     {
         this.itemData = itemData;
+        Debug.Log(itemData.Lshape);
 
         GetComponent<Image>().sprite = itemIcon;
 

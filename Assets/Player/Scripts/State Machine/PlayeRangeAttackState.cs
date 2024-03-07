@@ -1,41 +1,36 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class PlayerIdleState : State<PlayerStateEnum>
+public class PlayerRangeAttackState : State<PlayerStateEnum>
 {
     Animator animator;
-    private String animation = "Idle";
+    private String animation = "Shooting";
 
-    public PlayerIdleState(PlayerStateEnum key) : base(key) { }
+    public PlayerRangeAttackState(PlayerStateEnum key) : base(key) { }
 
     public override void EnterState(GameObject gameObject)
     {
-        tBuffer = 0;
-        exitable = true;
+        tBuffer = 1.16f;
+        tEnter = Time.time;
+        exitable = false;
+
         queuedStateKey = stateKey;
-
         animator = gameObject.GetComponent<Animator>();
-
-
-        animator.CrossFade(animation, 0.25f);
-//        animator.Play(animation);
+        animator.CrossFade(animation, 0.05f);
     }
+
     public override void UpdateState(GameObject gameObject)
     {
+        base.UpdateState(gameObject);
+        queuedStateKey = PlayerStateEnum.IDLE;
+
         if (AttackKeyDown())
         {
             queuedStateKey = PlayerStateEnum.ATTACK;
         }
-        if (SecondayAttackKeyDown())
-        {
-            if (gameObject.GetComponent<Player>().hasWeapon)
-            {
-                queuedStateKey = PlayerStateEnum.RANGEATTACK;
-            }
-        }
-        if (MovementKeyDown())
+        if (MovementKey())
         {
             if (RunKeyDown())
             {
@@ -47,9 +42,9 @@ public class PlayerIdleState : State<PlayerStateEnum>
             }
         }
     }
-    private bool MovementKeyDown()
+    private bool MovementKey()
     {
-        return Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D);
+        return Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D);
     }
 
     private bool RunKeyDown()
@@ -61,8 +56,11 @@ public class PlayerIdleState : State<PlayerStateEnum>
     {
         return Input.GetKeyDown(KeyCode.Mouse0);
     }
+
     private bool SecondayAttackKeyDown()
     {
         return Input.GetKeyDown(KeyCode.Mouse1);
     }
+
+
 }

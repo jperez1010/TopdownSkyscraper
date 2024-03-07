@@ -31,6 +31,8 @@ public class Player : MonoBehaviour
     private Transform weapon;
 
     public Transform weaponTransform;
+    public Transform bulletTransform;
+    public bool hasWeapon;
 
     // Start is called before the first frame update
 
@@ -110,6 +112,7 @@ public class Player : MonoBehaviour
                     {
                         case ItemType.EQUIPMENT:
                             Destroy(weapon.gameObject);
+                            hasWeapon = false;
                             break;
                         case ItemType.LEFT_LEG:
                             Destroy(leftLeg.gameObject);
@@ -177,6 +180,7 @@ public class Player : MonoBehaviour
                     {
                         case ItemType.EQUIPMENT:
                             weapon = Instantiate(_slot.ItemObject.characterDisplay, weaponTransform).transform;
+                            hasWeapon = true;
                             break;
                         case ItemType.LEFT_LEG:
                             leftLeg = boneCombiner.AddLimb(_slot.ItemObject.characterDisplay, _slot.ItemObject.boneNames);
