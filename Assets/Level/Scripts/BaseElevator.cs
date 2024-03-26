@@ -55,6 +55,7 @@ public class BaseElevator : MonoBehaviour
     public void UseElevator(int SceneIndex)
     {
         //        LevelManager.levelManagerInstance.LoadScene(0);
+        player.ResetInventory();
         SceneManager.LoadScene(0);
     }
 }

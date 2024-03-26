@@ -293,7 +293,7 @@ public class Player : MonoBehaviour
         ResetInventory();
     }
 
-    private void ResetInventory()
+    public void ResetInventory()
     {
         inventory.Clear();
         equipment.Clear();
