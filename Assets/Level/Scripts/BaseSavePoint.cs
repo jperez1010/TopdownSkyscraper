@@ -16,6 +16,7 @@ public class BaseSavePoint : MonoBehaviour
     private void Awake()
     {
         playerInRange = false;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         visualCue.SetActive(false);
     }
     private void Update()

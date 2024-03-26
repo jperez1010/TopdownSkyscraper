@@ -87,7 +87,7 @@ public class EnemyIdleState : State<EnemyStateEnum>
         {
             return;
         }
-        queuedStateKey = EnemyStateEnum.CHASE;
+        queuedStateKey = EnemyStateEnum.ALERT;
     }
 
     private void GeneratePath()
@@ -159,7 +159,7 @@ public class EnemyIdleState : State<EnemyStateEnum>
     }
     public override void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Weapon")
         {
             GameObject.Destroy(monster);
         }

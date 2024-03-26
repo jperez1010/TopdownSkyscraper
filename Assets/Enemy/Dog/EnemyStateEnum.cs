@@ -5,5 +5,7 @@ using UnityEngine;
 public enum EnemyStateEnum 
 {
     IDLE,
-    CHASE
+    ALERT,
+    CHASE,
+    LUNGE
 }
