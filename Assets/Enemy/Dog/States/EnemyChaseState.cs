@@ -48,6 +48,15 @@ public class EnemyChaseState : State<EnemyStateEnum>
     {
         if (chasing)
             ChasePlayer();
+        if (Vector3.Distance(monster.transform.position, player.transform.position) < 5f)
+        {
+            Vector3 dv = Vector3.Normalize(player.transform.position - monster.transform.position);
+            float theta = Mathf.Acos(Vector3.Dot(monster.transform.forward, dv));
+            if (theta < 0.5)
+            {
+                queuedStateKey = EnemyStateEnum.LUNGE;
+            }
+        }
         //Debug.DrawLine(gameObject.transform.position, player.transform.position, Color.blue);
     }
 
@@ -105,7 +114,7 @@ public class EnemyChaseState : State<EnemyStateEnum>
 
     public override void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if(other.gameObject.tag == "Weapon")
         {
             GameObject.Destroy(monster);
         }

@@ -9,7 +9,8 @@ using Ink.UnityIntegration;
 public class DialogueManager : MonoBehaviour
 {
     [Header("Params")]
-    [SerializeField] private float typingSpeed = 0.04f;
+    [SerializeField] private float typingSpeed = 25;
+    private float timePerLetter;
     [Header("Globals Ink File")]
     [SerializeField] private InkFile globalsInkFile;
     [Header("Dialogue UI")]
@@ -43,6 +44,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Awake()
     {
+        timePerLetter = 1 / typingSpeed;
         if (instance != null)
         {
             Debug.Log("Found more than one Dialogue Manager in scene");
@@ -317,7 +319,7 @@ public class DialogueManager : MonoBehaviour
             }
             dialogueText.text += letter;
             counter += 1;
-            yield return new WaitForSeconds(typingSpeed);
+            yield return new WaitForSeconds(timePerLetter);
         }
         DisplayChoices();
         canContinueToNextLine = true;

@@ -7,6 +7,7 @@ public abstract class StateHandler<EState> : MonoBehaviour where EState : Enum
 {
     public Dictionary<EState, State<EState>> states = new Dictionary<EState, State<EState>>();
 
+    [SerializeField] EState currentStateEnum;
     protected State<EState> currentState;
     protected State<EState> baseState;
 
@@ -18,6 +19,7 @@ public abstract class StateHandler<EState> : MonoBehaviour where EState : Enum
         currentState = baseState;
         isTransitioning = false;
         currentState.EnterState(gameObject);
+        currentStateEnum = baseState.GetNextStateKey();
     }
     private void Update()
     {
@@ -31,6 +33,7 @@ public abstract class StateHandler<EState> : MonoBehaviour where EState : Enum
 
         if (!nextStateKey.Equals(currentState.stateKey) && currentState.exitable)
         {
+            currentStateEnum = nextStateKey;
             TransitionState(nextStateKey);
         }
     }

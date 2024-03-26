@@ -12,7 +12,7 @@ public class PlayerSwingAttackState : State<PlayerStateEnum>
 
     public override void EnterState(GameObject gameObject)
     {
-        tBuffer = 1.267f;
+        tBuffer = 1.267f / 2f;
         tEnter = Time.time;
         exitable = false;
 
