@@ -23,9 +23,9 @@ MonoBehaviour:
     Id: 2
     KeyId: 0
     buffs:
-    - attribute: 0
+    - attribute: 1
       value: 0
-      min: 0
+      min: 5
       max: 10
     width: 2
     height: 2

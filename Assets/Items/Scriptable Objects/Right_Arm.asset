@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cf6c0ffad823bd439ebf1f3b2e3e2c6, type: 3}
+  m_Name: Right_Arm
+  m_EditorClassIdentifier: 
+  uiDisplay: {fileID: 21300000, guid: 68947ab91bf9d4a4a93d0e6c91f6f93f, type: 3}
+  stackable: 0
+  characterDisplay: {fileID: 1729854651497536393, guid: 27e9a73c7004204429a2968c9d482a55,
+    type: 3}
+  type: 6
+  description: 
+  data:
+    Name: 
+    Id: 4
+    KeyId: 0
+    buffs:
+    - attribute: 1
+      value: 0
+      min: 10
+      max: 20
+    width: 1
+    height: 1
+    Lshape: 0
+  boneNames:
+  - mixamorig:LeftShoulder
+  - mixamorig:LeftArm
+  - mixamorig:LeftForeArm
+  - mixamorig:LeftHand
+  - mixamorig:LeftHandThumb1
+  - mixamorig:LeftHandThumb2
+  - mixamorig:LeftHandThumb3
+  - mixamorig:LeftHandThumb4
+  - mixamorig:LeftHandIndex1
+  - mixamorig:LeftHandIndex2
+  - mixamorig:LeftHandIndex3
+  - mixamorig:LeftHandIndex4
+  - mixamorig:LeftHandMiddle1
+  - mixamorig:LeftHandMiddle2
+  - mixamorig:LeftHandMiddle3
+  - mixamorig:LeftHandMiddle4
+  - mixamorig:LeftHandRing1
+  - mixamorig:LeftHandRing2
+  - mixamorig:LeftHandRing3
+  - mixamorig:LeftHandRing4
+  - mixamorig:LeftHandPinky1
+  - mixamorig:LeftHandPinky2
+  - mixamorig:LeftHandPinky3
+  - mixamorig:LeftHandPinky4

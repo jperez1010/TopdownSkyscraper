@@ -47,6 +47,7 @@ public class PlayerIdleState : State<PlayerStateEnum>
             }
         }
     }
+
     private bool MovementKeyDown()
     {
         return Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D);

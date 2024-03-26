@@ -47,7 +47,7 @@ MonoBehaviour:
         height: 1
         Lshape: 0
       amount: 0
-    - AllowedItems: 
+    - AllowedItems: 06000000
       item:
         Name: 
         Id: -1

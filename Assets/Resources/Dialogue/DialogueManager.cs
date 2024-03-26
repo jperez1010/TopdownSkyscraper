@@ -160,6 +160,7 @@ public class DialogueManager : MonoBehaviour
         currentStory.BindExternalFunction("useElevator", () =>
         {
             elevator.UseElevator(1);
+            StartCoroutine(ExitElevatorDialogueMode());
         });
         for (int i = 0; i < choices.Length; i++)
         {

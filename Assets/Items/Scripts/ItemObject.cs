@@ -16,6 +16,7 @@ public enum ItemType
 
 public enum Attributes
 {
+    Health,
     Strength,
     Stealth,
     Medicine,

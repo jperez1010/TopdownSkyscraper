@@ -4,6 +4,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Player : MonoBehaviour
     public InventoryController gridController;
     public ItemGrid itemGrid;
     public WorldItemList worldItemList;
+    public int currentHealth;
     public Attribute[] attributes;
     public PlayerLocation playerLocation;
     [SerializeField]
@@ -50,6 +52,28 @@ public class Player : MonoBehaviour
             gridController.AddItem(_item, itemGrid, newSlot);
 
         }
+
+        GameObject target = other.gameObject;
+        if (target.tag == "Enemy")
+        {
+            DealDamage(target);
+        }
+    }
+
+    private void DealDamage(GameObject target)
+    {
+        DogData data = target.GetComponent<DogData>();
+        currentHealth -= data.attack;
+        if (currentHealth <= 0)
+        {
+            PlayerDead();
+        }
+    }
+
+    private void PlayerDead()
+    {
+        ResetInventory();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void Awake()
@@ -63,6 +87,7 @@ public class Player : MonoBehaviour
         {
             attributes[i].SetParent(this);
         }
+        currentHealth = attributes[0].value.BaseValue;
         for (int i = 0; i < equipment.GetSlots.Length; i++)
         {
             equipment.GetSlots[i].OnBeforeUpdate += OnRemoveItem;
@@ -127,7 +152,7 @@ public class Player : MonoBehaviour
                             }
                             break;
                         case ItemType.RIGHT_ARM:
-                            Destroy(rightArm.gameObject);
+                            //Destroy(rightArm.gameObject);
                             break;
                         case ItemType.TORSO:
                             Destroy(torso.gameObject);
@@ -192,7 +217,7 @@ public class Player : MonoBehaviour
                             leftArm = boneCombiner.AddLimb(_slot.ItemObject.characterDisplay, _slot.ItemObject.boneNames);
                             break;
                         case ItemType.RIGHT_ARM:
-                            rightArm = boneCombiner.AddLimb(_slot.ItemObject.characterDisplay, _slot.ItemObject.boneNames);
+                            //rightArm = boneCombiner.AddLimb(_slot.ItemObject.characterDisplay, _slot.ItemObject.boneNames);
                             break;
                         case ItemType.TORSO:
                             torso = boneCombiner.AddLimb(_slot.ItemObject.characterDisplay, _slot.ItemObject.boneNames);
@@ -265,6 +290,11 @@ public class Player : MonoBehaviour
 
     private void OnApplicationQuit()
     {
+        ResetInventory();
+    }
+
+    private void ResetInventory()
+    {
         inventory.Clear();
         equipment.Clear();
         worldItemList.WorldItems.groundItems.Clear();
@@ -282,7 +312,16 @@ public class Attribute
     public void SetParent(Player _parent)
     {
         parent = _parent;
+        int tempValue = -100;
+        if (value.BaseValue != 0)
+        {
+            tempValue = value.BaseValue;
+        }
         value = new ModifiableInt(AttributeModified);
+        if (tempValue > 0)
+        {
+            value.BaseValue = tempValue;
+        }
     }
     public void AttributeModified()
     {

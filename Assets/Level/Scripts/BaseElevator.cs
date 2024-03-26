@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BaseElevator : MonoBehaviour
 {
@@ -53,6 +54,7 @@ public class BaseElevator : MonoBehaviour
 
     public void UseElevator(int SceneIndex)
     {
-        LevelManager.levelManagerInstance.LoadScene(SceneIndex);
+        //        LevelManager.levelManagerInstance.LoadScene(0);
+        SceneManager.LoadScene(0);
     }
 }

@@ -66,7 +66,7 @@ public class MonsterData : MonoBehaviour
             {
                 GameObject newObject = Instantiate(spawnedItem);
                 GameObject player = this.gameObject;
-                newObject.transform.position = player.transform.position + new Vector3(player.transform.forward.x * 2, -player.transform.position.y, player.transform.forward.z * 2);
+                newObject.transform.position = player.transform.position + new Vector3(0, 1.5f, 0);
                 newObject.GetComponent<GroundItemHandler>().groundItem.item = itemObject;
                 newObject.GetComponent<Billboard>().camera = Camera.main;
                 newObject.GetComponentInChildren<SpriteRenderer>().sprite = itemObject.uiDisplay;
